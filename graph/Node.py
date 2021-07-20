@@ -1,4 +1,3 @@
 class Node:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
+    def __init__(self, node_number):
+        self.node_number = node_number
