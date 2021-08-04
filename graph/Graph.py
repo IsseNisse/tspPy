@@ -20,7 +20,11 @@ class Graph:
 
     @staticmethod
     def make_graph(file):
-        graph_file = open(file)
+        try:
+            graph_file = open(file)
+        except FileNotFoundError:
+            raise FileNotFoundError
+
         lines = json.load(graph_file)
 
         nodes = dict()
