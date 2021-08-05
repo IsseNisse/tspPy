@@ -16,10 +16,10 @@ class Edge:
 class Graph:
     def __init__(self, file):
         self.file = file
-        self.make_graph(file)
+        self._make_graph(file)
 
     @staticmethod
-    def make_graph(file):
+    def _make_graph(file):
         try:
             graph_file = open(file)
         except FileNotFoundError:
