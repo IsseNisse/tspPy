@@ -5,7 +5,7 @@ class Node:
     def __init__(self, node_number):
         self.node_number = node_number
 
-    def heap_permutation(self, a, size):
+    def heap_permutation(self, a, size, first_node):
         # print('size ' + str(size))
         # if size becomes 1 then prints the obtained
         # permutation
@@ -16,16 +16,16 @@ class Node:
             return
 
         for i in range(size):
-            self.heap_permutation(a, size - 1)
+            self.heap_permutation(a, size - 1, first_node)
 
             # if size is odd, swap 0th i.e (first)
             # and (size-1)th i.e (last) element
             # else If size is even, swap ith
             # and (size-1)th i.e (last) element
             if size & 1:
-                a[1], a[size] = a[size], a[1]
+                a[first_node], a[size + first_node - 1] = a[size + first_node - 1], a[first_node]
             else:
-                a[i + 1], a[size] = a[size], a[i + 1]
+                a[i + first_node], a[size + first_node - 1] = a[size + first_node - 1], a[i + first_node]
 
 
 class Edge:
