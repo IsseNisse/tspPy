@@ -4,28 +4,25 @@ import json
 class Node:
     def __init__(self, node_number):
         self.node_number = node_number
+        self.path = dict()
+        self.i = 1
 
     def heap_permutation(self, a, size, first_node):
-        # print('size ' + str(size))
-        # if size becomes 1 then prints the obtained
-        # permutation
+
         if size == 1:
-            for key in a:
-                print(a[key].node_number)
-            print(a)
+            a_copy = a.copy()
+            self.path['dict' + str(self.i)] = a_copy
+            self.i += 1
             return
 
         for i in range(size):
             self.heap_permutation(a, size - 1, first_node)
 
-            # if size is odd, swap 0th i.e (first)
-            # and (size-1)th i.e (last) element
-            # else If size is even, swap ith
-            # and (size-1)th i.e (last) element
             if size & 1:
                 a[first_node], a[size + first_node - 1] = a[size + first_node - 1], a[first_node]
             else:
                 a[i + first_node], a[size + first_node - 1] = a[size + first_node - 1], a[i + first_node]
+        return self.path
 
 
 class Edge:
