@@ -12,8 +12,13 @@ paths = nodes[heap_first_node].heap_permutation(heap_nodes, len(heap_nodes), hea
 for path_key in paths:
     path = paths[path_key]
     path[first_node_key] = first_node
+    edges = []
     for node_key in path:
-        if node_key == len(path) - 1:
+        if node_key < len(path) - 1:
             edge = path[node_key].get_edge(path[node_key + 1])
-            print(edge)
+            edges.append(edge)
+        else:
+            edge = path[node_key].get_edge(path[first_node_key])
+            edges.append(edge)
+    print(edges)
 
