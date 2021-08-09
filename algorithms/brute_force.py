@@ -1,12 +1,15 @@
 from graph.Graph import Graph, Node, Edge
+import time
 
-graph = Graph("../graph1.json")
+graph = Graph("../graph4.json")
 nodes = graph.get_nodes()
 heap_nodes = nodes.copy()
 first_node = heap_nodes[1]
 first_node_key = list(nodes.keys())[0]
 del heap_nodes[1]
 heap_first_node = list(heap_nodes.keys())[0]
+
+start = time.time()
 paths = nodes[heap_first_node].heap_permutation(heap_nodes, len(heap_nodes), heap_first_node)
 shortest_weight = 0
 shortest_path = None
@@ -28,7 +31,7 @@ for path_key in paths:
     for edge in edges:
         total_w += edge.weight
 
-    print('total: ' + str(total_w) + '\n')
+    # print('total: ' + str(total_w) + '\n')
     if shortest_weight == total_w:
         alt_path = path
 
@@ -36,8 +39,15 @@ for path_key in paths:
         shortest_weight = total_w
         shortest_path = path
 
+end = time.time()
+print('Time: ' + str(end - start))
+print('Weight: ' + str(shortest_weight))
 
-print(shortest_weight)
-print(str(shortest_path[1].node_number) + '' + str(shortest_path[2].node_number) + '' + str(shortest_path[3].node_number) + '' + str(shortest_path[4].node_number) + '' + str(shortest_path[5].node_number))
-print('alt path: ' + str(alt_path[1].node_number) + '' + str(alt_path[2].node_number) + '' + str(alt_path[3].node_number) + '' + str(alt_path[4].node_number) + '' + str(alt_path[5].node_number))
+print('Path: ')
+for i in range(1, len(shortest_path) + 1):
+    print(shortest_path[i].node_number)
+
+print('Alt path: ')
+for i in range(1, len(alt_path) + 1):
+    print(alt_path[i].node_number)
 

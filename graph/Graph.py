@@ -14,6 +14,7 @@ class Node:
             a_copy = a.copy()
             self.path['dict' + str(self.i)] = a_copy
             self.i += 1
+
             return
 
         for i in range(size):
